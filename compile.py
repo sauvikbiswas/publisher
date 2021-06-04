@@ -11,7 +11,7 @@ htmlFolder = os.path.join(folder,'temp')
 def writeFile(folder, filename, data):
     if not os.path.isdir(folder):
         os.mkdir(folder)
-    with open(os.path.join(folder,filename), 'wb') as fpout:
+    with open(os.path.join(folder,filename), 'w') as fpout:
         fpout.write(data)
     return
 
@@ -45,9 +45,9 @@ extraVars = {}
 for functionName in functionRepo:
     extraVars[functionName] = functionRepo[functionName](postIdDict)
 
-print "Generating Posts"
+print("Generating Posts")
 for root, dirs, files in os.walk(postFolder):
     for filename in files:
         data, var = parse.generatePost(folder, filename, postIdDict, extraVars)
-        print "\t"+filename.replace('.md','.html')
+        print("\t"+filename.replace('.md','.html'))
         writeFile(htmlFolder, filename.replace('.md','.html'), data)

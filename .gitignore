@@ -1,5 +1,3 @@
 *.pyc
 compile
-bc_blog/
-TAODT/
 venv/

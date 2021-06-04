@@ -3,7 +3,7 @@ rm -r $1/temp/*
 cp $1/functions.py .
 cp $1/substitute.py .
 cp $1/sync.cmd .
-python compile.py $1
+python333 compile.py $1
 rsync -acvz $1/temp/ $1/html
 rsync -acvz $1/sync/ $1/html
 rm functions.py*

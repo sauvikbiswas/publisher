@@ -3,6 +3,7 @@ from markdown import markdown
 import os
 import sys
 from substitute import substitutionMap
+from functools import reduce
 
 #from pprint import pprint as pp
 
@@ -60,7 +61,7 @@ def substituteVars(modData, postVars, postIdDict = {}):
         for match in matchiter:
             postId = match.group(2)
             if postId in postIdDict:
-                print postIdDict[postId]
+                print(postIdDict[postId])
                 replacementDict[match.group(0)] = match.group(1) + \
                     postIdDict[postId][0] + match.group(3)
 
@@ -101,8 +102,8 @@ def scanFunctions(folder):
         match = functionRe.search(line)
         if match:
             functionRepo[match.group(1)] = None
-    fn = __import__('functions', globals(), locals(), functionRepo.keys(), -1)
-    for functionName in functionRepo.keys():
+    fn = __import__('functions', globals(), locals(), list(functionRepo.keys()))
+    for functionName in list(functionRepo.keys()):
         functionRepo[functionName] = getattr(fn, functionName)
     return functionRepo
 
