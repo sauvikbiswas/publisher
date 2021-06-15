@@ -1,4 +1,4 @@
 *.pyc
-compile
 venv/
 __pycache__/
+sync.cmd

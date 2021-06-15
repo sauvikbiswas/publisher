@@ -8,8 +8,14 @@ rsync -acvz $1/temp/ $1/html
 rsync -acvz $1/sync/ $1/html
 rm functions.py*
 rm substitute.py*
-if [ $# -lt 2 ]
+if [ $# -ge 2 ]
 then
-  ./sync.cmd $1
+  python3 command.py
+  shift
+  for i in "$@"
+  do
+    ./_$1.cmd
+  done
+  rm _*.cmd
 fi
 rm sync.cmd
